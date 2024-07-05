@@ -38,6 +38,8 @@ app.use("/api/v1/inventory", require("./routes/inventoryRoutes"));
 
 app.use("/api/v1/analytics", require("./routes/AnalyticsRoute"));
 
+app.use("/api/v1/admin", require("./routes/AdminRoutes"));
+
 const PORT = process.env.PORT || 8000;
 // const PORT = process.env.PORT;
 app.get("/", (req, res) => {

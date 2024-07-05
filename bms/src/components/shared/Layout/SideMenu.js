@@ -32,11 +32,11 @@ const SideMenu = () => {
               {/* Donar */}
               <div
                 className={`menu-item ${
-                  location.pathname === "/donar" && "active"
+                  location.pathname === "/donor" && "active"
                 }`}
               >
                 <i className={"fa-solid fa-hand-holding-medical"}></i>
-                <Link to="/donar">Donar</Link>
+                <Link to="/donor">Donar</Link>
               </div>
 
               {/* Hospital */}
@@ -47,6 +47,42 @@ const SideMenu = () => {
               >
                 <i className={"fa-solid fa-hospital"}></i>
                 <Link to="/hospital">Hospital</Link>
+              </div>
+            </>
+          )}
+
+          {/* /////////////////////////////////// */}
+          {/*  Admin Panel */}
+          {user?.role === "admin" && (
+            <>
+              {/* Inventory */}
+              <div
+                className={`menu-item ${
+                  location.pathname === "/donar-list" && "active"
+                }`}
+              >
+                <i className={"fa-solid fa-warehouse"}></i>
+                <Link to="/donar-list">Donar List</Link>
+              </div>
+
+              {/* Donar */}
+              <div
+                className={`menu-item ${
+                  location.pathname === "/hospital-list" && "active"
+                }`}
+              >
+                <i className={"fa-solid fa-hand-holding-medical"}></i>
+                <Link to="/hospital-list">Hospital List</Link>
+              </div>
+
+              {/* Hospital */}
+              <div
+                className={`menu-item ${
+                  location.pathname === "/organisation-list" && "active"
+                }`}
+              >
+                <i className={"fa-solid fa-hospital"}></i>
+                <Link to="/organisation-list">Organisation List</Link>
               </div>
             </>
           )}

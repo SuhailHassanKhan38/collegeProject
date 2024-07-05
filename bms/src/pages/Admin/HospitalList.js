@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../components/shared/Layout/Layout";
-import API from "../../services/API";
 import moment from "moment";
+import API from "../../services/API";
 
-const Donar = () => {
+const HospitalList = () => {
   const [data, setData] = useState([]);
 
   // Get Donar Records
   const getDonars = async () => {
     try {
-      const response = await API.get("/inventory/get-donors");
-      if (response.data?.success) {
-        setData(response.data?.donars);
+      const { data } = await API.get("/admin/hospital-list");
+      if (data?.success) {
+        setData(data?.donarData);
       } else {
         throw new Error("Failed to fetch donor records");
       }
@@ -53,4 +53,4 @@ const Donar = () => {
   );
 };
 
-export default Donar;
+export default HospitalList;
