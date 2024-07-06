@@ -14,7 +14,7 @@ export default function MyLogin() {
         <Spinner />
       ) : (
         <div className="row g-0">
-          <div className="col-md-8 form-banner">
+          <div className="col-md-8 g-0 form-banner">
             <img src={bmsPic1} alt="loginImage" />
           </div>
           <div className="col-md-4 form-container">

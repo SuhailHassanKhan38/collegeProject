@@ -1,9 +1,9 @@
-*{
+{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* overflow: hidden; */
-}
+   overflow: hidden; 
+ } 
 
 /* Form csss */
 
@@ -11,15 +11,19 @@
   height: 100%;
   width: 100%;
 
-}
+} 
 
-.form-container{
+ .form-container{
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
 
 }
+ 
+
+
+/*  GPT css */
 
 
 
