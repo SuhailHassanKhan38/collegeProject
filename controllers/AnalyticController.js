@@ -1,18 +1,17 @@
 const inventoryModel = require("../models/inventoryModel");
 const mongoose = require("mongoose");
-
-// Get Blood Group Details
+//  get Blood data
 const bloodGroupDetailsController = async (req, res) => {
   try {
     const bloodGroups = ["O+", "O-", "AB+", "AB-", "A+", "A-", "B+", "B-"];
     const organisation = new mongoose.Types.ObjectId(req.body.userId);
 
     const bloodGroupDataPromises = bloodGroups.map(async (bloodGroup) => {
-      // Aggregate total IN blood details
+      // Count total [IN] blood Details
       const totalIn = await inventoryModel.aggregate([
         {
           $match: {
-            bloodGroup,
+            bloodGroup: bloodGroup,
             inventoryType: "in",
             organisation,
           },
@@ -25,11 +24,11 @@ const bloodGroupDetailsController = async (req, res) => {
         },
       ]);
 
-      // Aggregate total OUT blood details
+      // Count total [OUT] blood Details
       const totalOut = await inventoryModel.aggregate([
         {
           $match: {
-            bloodGroup,
+            bloodGroup: bloodGroup,
             inventoryType: "out",
             organisation,
           },
@@ -42,11 +41,11 @@ const bloodGroupDetailsController = async (req, res) => {
         },
       ]);
 
-      // Calculate available blood quantity
+      // Calculate Total Blood Quantity
       const availableBlood =
         (totalIn[0]?.total || 0) - (totalOut[0]?.total || 0);
 
-      // Return data for this blood group
+      // Return Data for this blood group
       return {
         bloodGroup,
         totalIn: totalIn[0]?.total || 0,
@@ -58,18 +57,18 @@ const bloodGroupDetailsController = async (req, res) => {
     // Wait for all promises to resolve
     const bloodGroupData = await Promise.all(bloodGroupDataPromises);
 
-    // Return response
+    // Returning Response
     return res.status(200).send({
       success: true,
-      message: "Blood Group Data Fetched Successfully",
+      message: "Blood Group Data Fetched successfully",
       bloodGroupData,
     });
   } catch (error) {
-    console.error(`Error in bloodGroupDetailsController: ${error.message}`);
+    console.log(error);
     return res.status(500).send({
       success: false,
-      message: "Error in Blood Group Data Analytics API",
-      error: error.message,
+      message: "Error in bloodGroup data Analytics API",
+      error,
     });
   }
 };

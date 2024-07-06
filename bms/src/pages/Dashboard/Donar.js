@@ -27,7 +27,7 @@ const Donar = () => {
   return (
     <Layout>
       <div className="container mt-4">
-        <h2>Donor Records</h2>
+        {/* <h2>Donor Records</h2> */}
         <table className="table">
           <thead>
             <tr>

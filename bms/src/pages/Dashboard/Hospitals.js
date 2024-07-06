@@ -38,7 +38,7 @@ const Hospitals = () => {
   return (
     <Layout>
       <div className="container mt-4">
-        <h2>Hospital Records</h2>
+        {/* <h2>Hospital Records</h2> */}
         <table className="table">
           <thead>
             <tr>
