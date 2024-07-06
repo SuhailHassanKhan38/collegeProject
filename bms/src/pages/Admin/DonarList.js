@@ -44,7 +44,7 @@ const DonarList = () => {
   return (
     <Layout>
       <div className="container mt-4">
-        <h2>Donor Records</h2>
+        {/* <h2>Donor Records</h2> */}
         <table className="table">
           <thead>
             <tr>
@@ -67,7 +67,7 @@ const DonarList = () => {
                     className="btn btn-danger"
                     onClick={() => handleDelete(record._id)}
                   >
-                    Delete
+                    <i className="fa-solid fa-trash"></i>
                   </button>
                   {/* <i className="fa-solid fa-trash" /> */}
                 </td>

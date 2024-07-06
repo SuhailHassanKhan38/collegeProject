@@ -13,6 +13,7 @@ const getDonarsListController = async (req, res) => {
       success: true,
       TotalCount: donarData.length,
       message: " Admin! DonarList Data Fetched Successfully ",
+      donarData,
     });
   } catch (error) {
     console.log(error);
@@ -34,6 +35,7 @@ const getHospitalListController = async (req, res) => {
       success: true,
       TotalCount: hospitalData.length,
       message: " Admin! HospitalList Data Fetched Successfully ",
+      hospitalData,
     });
   } catch (error) {
     console.log(error);
@@ -57,6 +59,7 @@ const getOrganisationListController = async (req, res) => {
       success: true,
       TotalCount: organisationData.length,
       message: " Admin! organisationList Data Fetched Successfully ",
+      organisationData,
     });
   } catch (error) {
     console.log(error);
@@ -68,7 +71,7 @@ const getOrganisationListController = async (req, res) => {
   }
 };
 
-//  Delete records button
+//  Delete  Donar records button
 
 const deleteDonarController = async (req, res) => {
   try {
@@ -87,9 +90,49 @@ const deleteDonarController = async (req, res) => {
   }
 };
 
+//  Delete records button
+
+const deleteHospitalController = async (req, res) => {
+  try {
+    await userModel.findByIdAndDelete(req.params.id);
+    return res.status(200).send({
+      success: true,
+      message: " Hospital Record Deleted successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({
+      success: false,
+      message: "error in deleting",
+      error,
+    });
+  }
+};
+
+//  Delete Organisation records button
+
+const deleteOrganisationController = async (req, res) => {
+  try {
+    await userModel.findByIdAndDelete(req.params.id);
+    return res.status(200).send({
+      success: true,
+      message: " Organisation Record Deleted successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({
+      success: false,
+      message: "error in deleting",
+      error,
+    });
+  }
+};
+
 module.exports = {
   getDonarsListController,
   getHospitalListController,
   getOrganisationListController,
   deleteDonarController,
+  deleteHospitalController,
+  deleteOrganisationController,
 };

@@ -5,6 +5,8 @@ const {
   getHospitalListController,
   getOrganisationListController,
   deleteDonarController,
+  deleteHospitalController,
+  deleteOrganisationController,
 } = require("../controllers/AdminController");
 const AdminMiddleware = require("../middlewares/AdminMiddleware");
 
@@ -42,5 +44,23 @@ router.delete(
   authMiddleware,
   AdminMiddleware,
   deleteDonarController
+);
+
+//  Delete Hospital records | Get
+
+router.delete(
+  "/delete-hospital/:id",
+  authMiddleware,
+  AdminMiddleware,
+  deleteHospitalController
+);
+
+//  Delete Organisation records | Get
+
+router.delete(
+  "/delete-organisation/:id",
+  authMiddleware,
+  AdminMiddleware,
+  deleteOrganisationController
 );
 module.exports = router;

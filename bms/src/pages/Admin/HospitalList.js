@@ -11,12 +11,12 @@ const HospitalList = () => {
     try {
       const { data } = await API.get("/admin/hospital-list");
       if (data?.success) {
-        setData(data?.donarData);
+        setData(data?.hospitalData);
       } else {
-        throw new Error("Failed to fetch donor records");
+        throw new Error("Failed to fetch Hospital records");
       }
     } catch (error) {
-      console.log("Error fetching donor records:", error);
+      console.log("Error fetching Hospital records:", error);
     }
   };
 
@@ -24,26 +24,56 @@ const HospitalList = () => {
     getDonars();
   }, []);
 
+  //    Delete record function
+
+  const handleDelete = async (id) => {
+    try {
+      let answer = prompt(
+        "Are you sure want to delete the  hospital record",
+        "sure"
+      );
+      if (!answer) {
+        return;
+      }
+      const { data } = await API.delete(`/admin/delete-hospital/${id}`);
+
+      alert(data?.message);
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Layout>
       <div className="container mt-4">
-        <h2>Donor Records</h2>
+        {/* <h2>Hospital Records</h2> */}
         <table className="table">
           <thead>
             <tr>
               <th scope="col">Name</th>
               <th scope="col">Email</th>
               <th scope="col">Phone</th>
-              <th scope="col">Date & Time</th>
+              <th scope="col">Date</th>
+              <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
             {data?.map((record) => (
               <tr key={record._id}>
-                <td>{record.name || record.organisationName + " (ORG)"}</td>
+                <td>{record.hospitalName}</td>
                 <td>{record.email}</td>
                 <td>{record.phone}</td>
-                <td>{moment(record.createdAt).format("DD/MM/YYYY hh:mm A")}</td>
+                <td>{moment(record.createdAt).format("DD/MM/YYYY")}</td>
+                <td>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => handleDelete(record._id)}
+                  >
+                    <i className="fa-solid fa-trash"></i>
+                  </button>
+                  {/* <i className="fa-solid fa-trash" /> */}
+                </td>
               </tr>
             ))}
           </tbody>
