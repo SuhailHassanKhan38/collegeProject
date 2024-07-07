@@ -25,6 +25,7 @@ const ProtectedRoute = ({ children }) => {
 
   // Redirect to login if no token is found
   if (localStorage.getItem("token")) {
+    console.log("hello token");
     return children;
   } else {
     return <Navigate to="/login" />;

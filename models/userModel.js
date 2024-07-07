@@ -11,18 +11,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    // organisationName: {
-    //   type: String,
-    //   required: function () {
-    //     return this.role === "organisation";
-    //   },
-    // },
-    // hospitalName: {
-    //   type: String,
-    //   required: function () {
-    //     return this.role === "hospital";
-    //   },
-    // },
+
     email: {
       type: String,
       required: [true, "Email is required"],

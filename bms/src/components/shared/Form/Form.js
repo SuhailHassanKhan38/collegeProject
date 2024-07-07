@@ -6,7 +6,11 @@ import {
 } from "../../../services/authenticationService";
 import InputType from "./inputType";
 
+// import { useDispatch } from "react-redux";
+// import API from "../../../services/API";
+// import { getCurrentUser } from "../../../redux/features/reduxAuth/authActions";
 export default function Form({ checkbox, formType, submitBtn, formTitle }) {
+  // const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -20,6 +24,10 @@ export default function Form({ checkbox, formType, submitBtn, formTitle }) {
     e.preventDefault();
     if (formType === "login") {
       HandleLogin(e, email, password, role);
+      // const { data } = API.get("/auth/current-user");
+      // if (data?.success) {
+      //   dispatch(getCurrentUser(data.user)); // Assuming `data.user` contains user information
+      // }
     } else if (formType === "register") {
       HandleRegister(e, role, name, email, password, phone, address);
     }

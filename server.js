@@ -5,30 +5,16 @@ const morgan = require("morgan");
 const cors = require("cors");
 const connectDB = require("./config/db");
 
-// dot config
 dotenv.config();
-
-// MongoDb Connection
 
 connectDB();
 console.log("connected to MongoDb Successfully");
 
-// rest objects
 const app = express();
 
-// MIDDLEWARE
 app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
-
-// app.get("/",(req,res)=>{
-//     res.status(200).json({
-//         message:"welcome to blood bank app"
-//     })
-
-// })
-
-// ROutes
 
 app.use("/api/v1/test", require("./routes/testRoutes"));
 
@@ -41,7 +27,7 @@ app.use("/api/v1/analytics", require("./routes/AnalyticsRoute"));
 app.use("/api/v1/admin", require("./routes/AdminRoutes"));
 
 const PORT = process.env.PORT || 8000;
-// const PORT = process.env.PORT;
+
 app.get("/", (req, res) => {
   res.sendStatus(200);
 });
