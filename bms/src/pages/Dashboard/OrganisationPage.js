@@ -46,7 +46,7 @@ const OrganisationPage = () => {
   return (
     <Layout>
       <div className="container mt-4">
-        <h2>Organisation Records</h2>
+        {/* <h2>Organisation Records</h2> */}
         <table className="table">
           <thead>
             <tr>
@@ -60,7 +60,8 @@ const OrganisationPage = () => {
           <tbody>
             {data?.map((record) => (
               <tr key={record._id}>
-                <td>{record.organisationName}</td>
+                {/* <td>{record.organisationName}</td> */}
+                <td>xyz</td>
                 <td>{record.email}</td>
                 <td>{record.phone}</td>
                 <td>{record.address}</td>

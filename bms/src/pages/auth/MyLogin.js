@@ -1,5 +1,5 @@
 import React from "react";
-import bmsPic1 from "../../AllImages/bmsPic1.jpg";
+import bmsPic2 from "../../AllImages/bmsPic2.jpg";
 import Form from "../../components/shared/Form/Form";
 import { useSelector } from "react-redux";
 import Spinner from "../../components/shared/Spinner";
@@ -15,7 +15,7 @@ export default function MyLogin() {
       ) : (
         <div className="row g-0">
           <div className="col-md-8 g-0 form-banner">
-            <img src={bmsPic1} alt="loginImage" />
+            <img src={bmsPic2} alt="loginImage" />
           </div>
           <div className="col-md-4 form-container">
             <Form formTitle="Login Page" submitBtn="Login" formType="login" />

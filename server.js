@@ -11,7 +11,7 @@ dotenv.config();
 // MongoDb Connection
 
 connectDB();
-console.log("hay");
+console.log("connected to MongoDb Successfully");
 
 // rest objects
 const app = express();

@@ -34,7 +34,7 @@ const Header = () => {
 
           {/* Conditional navigation links */}
           {location.pathname === "/" ||
-          location.pathname === "/donar" ||
+          location.pathname === "/donor" ||
           location.pathname === "/hospital" ? (
             <li className="nav-item mx-3">
               <Link to="/analytics" className="nav-link">
