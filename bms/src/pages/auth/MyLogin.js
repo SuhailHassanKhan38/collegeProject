@@ -18,7 +18,12 @@ export default function MyLogin() {
             <img src={bmsPic2} alt="loginImage" />
           </div>
           <div className="col-md-4 form-container">
-            <Form formTitle="Login Page" submitBtn="Login" formType="login" />
+            <Form
+              checkbox={false}
+              formTitle="Login Page"
+              submitBtn="Login"
+              formType="login"
+            />
           </div>
         </div>
       )}

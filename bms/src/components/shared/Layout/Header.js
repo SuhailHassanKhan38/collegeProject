@@ -11,6 +11,7 @@ const Header = () => {
   // Logout function
   const handleLogout = () => {
     alert("Logout Successfully");
+    localStorage.removeItem("token");
     navigate("/login");
   };
 

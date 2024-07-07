@@ -91,6 +91,7 @@ const createInventoryController = async (req, res) => {
 const getInventoryController = async (req, res) => {
   try {
     const { userId } = req.body;
+    console.log("id", userId);
     const inventory = await inventoryModel
       .find({ organisation: userId })
       .populate("donor")
@@ -114,11 +115,12 @@ const getInventoryController = async (req, res) => {
 
 // Get Inventory Hospital Controller/API
 const getInventoryHospitalController = async (req, res) => {
+  console.log("hay");
   try {
     const { filters } = req.body;
     const inventory = await inventoryModel
-      .find(filters)
-      .populate("donar")
+      .find()
+      .populate("donor")
       .populate("hospital")
       .populate("organisation")
       .sort({ createdAt: -1 });
@@ -167,9 +169,9 @@ const getDonarsController = async (req, res) => {
   try {
     const { userId } = req.body;
 
-    const donarIds = await inventoryModel.find({ organisation: userId });
+    // const donarIds = await inventoryModel.find({ organisation: userId });
 
-    const donars = await userModel.find({ _id: { $in: donarIds[0].donars } });
+    const donars = await userModel.find({ role: "donar" });
 
     return res.status(200).send({
       success: true,
@@ -193,7 +195,7 @@ const getHospitalController = async (req, res) => {
     const hospitalIds = await inventoryModel.distinct("hospital", {
       organisation: userId,
     });
-    const hospitals = await userModel.find({ _id: { $in: hospitalIds } });
+    const hospitals = await userModel.find({ role: "hospital" });
 
     return res.status(200).send({
       success: true,
@@ -238,10 +240,10 @@ const getOrganisationController = async (req, res) => {
 const getOrganisationForHospitalController = async (req, res) => {
   try {
     const { userId } = req.body;
-    const orgIds = await inventoryModel.distinct("organisation", {
-      hospital: userId,
-    });
-    const organisations = await userModel.find({ _id: { $in: orgIds } });
+    // const orgIds = await inventoryModel.distinct("organisation", {
+    //   hospital: userId,
+    // });
+    const organisations = await userModel.find({ role: "organisation" });
 
     return res.status(200).send({
       success: true,

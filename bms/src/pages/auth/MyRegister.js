@@ -19,6 +19,7 @@ export default function MyRegister() {
           </div>
           <div className="col-md-4 form-container">
             <Form
+              checkbox={true}
               formTitle="Registration Page"
               submitBtn="Register"
               formType="register"

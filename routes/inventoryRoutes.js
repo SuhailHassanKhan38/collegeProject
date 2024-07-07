@@ -31,12 +31,12 @@ router.get("/get-inventory", authMiddleware, getInventoryController);
 // Get all blood records for hospitals
 router.get(
   "/get-inventory-hospital",
-  authMiddleware,
+  // authMiddleware,
   getInventoryHospitalController
 );
 
 // Get donor records
-router.get("/get-donars", authMiddleware, getDonarsController);
+router.get("/get-donors", authMiddleware, getDonarsController);
 
 // Get hospital records
 router.get("/get-hospitals", authMiddleware, getHospitalController);

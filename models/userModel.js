@@ -9,22 +9,20 @@ const userSchema = new mongoose.Schema(
     },
     name: {
       type: String,
-      required: function () {
-        return this.role === "admin" || this.role === "donar";
-      },
+      required: true,
     },
-    organisationName: {
-      type: String,
-      required: function () {
-        return this.role === "organisation";
-      },
-    },
-    hospitalName: {
-      type: String,
-      required: function () {
-        return this.role === "hospital";
-      },
-    },
+    // organisationName: {
+    //   type: String,
+    //   required: function () {
+    //     return this.role === "organisation";
+    //   },
+    // },
+    // hospitalName: {
+    //   type: String,
+    //   required: function () {
+    //     return this.role === "hospital";
+    //   },
+    // },
     email: {
       type: String,
       required: [true, "Email is required"],

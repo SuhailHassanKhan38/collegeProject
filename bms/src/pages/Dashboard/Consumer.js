@@ -11,7 +11,7 @@ const Consumer = () => {
   // Get Donar Records for the logged-in hospital user
   const getDonars = async () => {
     try {
-      const response = await API.post("/inventory/get-inventory-hospital", {
+      const response = await API.get("/inventory/get-inventory-hospital", {
         filters: {
           inventoryType: "out",
           hospital: user?._id,

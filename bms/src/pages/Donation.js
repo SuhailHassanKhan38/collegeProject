@@ -7,26 +7,28 @@ import { useSelector } from "react-redux";
 const Donation = () => {
   const [data, setData] = useState([]);
   const { user } = useSelector((state) => state.auth);
-
+  console.log(user);
   // Function to fetch donation data based on user role
   const getDonars = async () => {
     try {
       let response;
       if (user?.role === "donar") {
-        response = await API.post("/inventory/get-inventory-hospital", {
+        response = await API.get("/inventory/get-inventory-hospital", {
           filters: {
             inventoryType: "in",
             donar: user?._id,
           },
         });
+        console.log(response);
       } else {
-        throw new Error("User is not authorized to view donations.");
+        throw new Error("User is not authorized to view donations salman.");
       }
 
+      console.log(getDonars);
       if (response?.data?.success) {
         setData(response.data?.inventory);
       } else {
-        throw new Error("Failed to fetch donation records");
+        throw new Error("Failed to fetch donation records salman");
       }
     } catch (error) {
       console.log("Error fetching donation records:", error);
@@ -34,13 +36,15 @@ const Donation = () => {
   };
 
   useEffect(() => {
+    console.log("hayyyyy");
     getDonars();
   }, []);
+  // getDonars();
 
   return (
     <Layout>
       <div className="container mt-4">
-        <h2>My Donations</h2>
+        <h2>My Donations salman </h2>
         <table className="table">
           <thead>
             <tr>
