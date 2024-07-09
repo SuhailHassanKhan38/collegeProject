@@ -22,8 +22,12 @@ export default function Form({ checkbox, formType, submitBtn, formTitle }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // setEmail("");
+    // setPassword("");
     if (formType === "login") {
       HandleLogin(e, email, password, role);
+      // setEmail("");
+      // setPassword("");
       // const { data } = API.get("/auth/current-user");
       // if (data?.success) {
       //   dispatch(getCurrentUser(data.user)); // Assuming `data.user` contains user information
