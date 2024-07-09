@@ -52,7 +52,7 @@ const Hospitals = () => {
           <tbody>
             {data?.map((record) => (
               <tr key={record._id}>
-                <td>{record.hospitalName}</td>
+                <td>{record.name}</td>
                 <td>{record.email}</td>
                 <td>{record.phone}</td>
                 <td>{record.address}</td>
