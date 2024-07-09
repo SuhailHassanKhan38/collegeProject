@@ -18,6 +18,7 @@ export const userLogin = createAsyncThunk(
         // history.push("/donor");
         // Redirect using react-router-dom history or push
         // history.push("/");
+        window.location = "/";
       }
       return data; // Return data on success
     } catch (error) {
