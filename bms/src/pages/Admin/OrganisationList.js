@@ -66,13 +66,18 @@ const OrganisationList = () => {
                 <td>{record.phone}</td>
                 <td>{moment(record.createdAt).format("DD/MM/YYYY")}</td>
                 <td>
+                  <button className="btn btn-primary ">
+                    <i className="fa-solid fa-person-circle-check"></i>
+                  </button>
+                  &nbsp;
                   <button
                     className="btn btn-danger "
                     onClick={() => handleDelete(record._id)}
                   >
                     <i className="fa-solid fa-trash"></i>
                   </button>
-                  {/* <i className="fa-solid fa-trash" /> */}
+                  {/* <i class="fa-solid fa-person-circle-check"></i>
+                  <i className="fa-solid fa-trash" /> */}
                 </td>
               </tr>
             ))}

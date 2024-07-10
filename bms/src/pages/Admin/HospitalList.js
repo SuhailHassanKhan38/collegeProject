@@ -66,6 +66,10 @@ const HospitalList = () => {
                 <td>{record.phone}</td>
                 <td>{moment(record.createdAt).format("DD/MM/YYYY")}</td>
                 <td>
+                  <button className="btn btn-primary ">
+                    <i className="fa-solid fa-person-circle-check"></i>
+                  </button>
+                  &nbsp;
                   <button
                     className="btn btn-danger"
                     onClick={() => handleDelete(record._id)}
