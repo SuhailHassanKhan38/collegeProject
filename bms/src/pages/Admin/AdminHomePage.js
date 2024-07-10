@@ -33,23 +33,8 @@ const AdminHomePage = () => {
     }
   };
 
-  // Get Recent Blood Records
-  const getBloodRecords = async () => {
-    try {
-      const response = await API.get("inventory/get-recent-inventory");
-      if (response.data?.success) {
-        setInventoryData(response.data.inventory);
-      } else {
-        throw new Error("Failed to fetch recent blood records");
-      }
-    } catch (error) {
-      console.log("Error fetching recent blood records:", error);
-    }
-  };
-
   useEffect(() => {
     getBloodGroupData();
-    getBloodRecords();
   }, []);
   const { user } = useSelector((state) => state.auth);
   return (
