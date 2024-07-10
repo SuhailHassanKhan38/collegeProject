@@ -1,12 +1,87 @@
-import React from "react";
+// import React from "react";
 import Layout from "../../components/shared/Layout/Layout";
 import { useSelector } from "react-redux";
 
+import React, { useEffect, useState } from "react";
+// import Header from "../../components/shared/Layout/Header";
+import API from "./../../services/API";
 const AdminHomePage = () => {
+  const [data, setData] = useState([]);
+  const [inventoryData, setInventoryData] = useState([]);
+  const colors = [
+    "#884A39",
+    "#C38154",
+    "#FFC26F",
+    "#4F709C",
+    "#4942E4",
+    "#0079FF",
+    "#FF0060",
+    "#22A699",
+  ];
+
+  // Get Blood Group Data
+  const getBloodGroupData = async () => {
+    try {
+      const response = await API.get("/analytics/bloodGroups-data");
+      if (response.data?.success) {
+        setData(response.data.bloodGroupData);
+      } else {
+        throw new Error("Failed to fetch blood group data");
+      }
+    } catch (error) {
+      console.log("Error fetching blood group data:", error);
+    }
+  };
+
+  // Get Recent Blood Records
+  const getBloodRecords = async () => {
+    try {
+      const response = await API.get("inventory/get-recent-inventory");
+      if (response.data?.success) {
+        setInventoryData(response.data.inventory);
+      } else {
+        throw new Error("Failed to fetch recent blood records");
+      }
+    } catch (error) {
+      console.log("Error fetching recent blood records:", error);
+    }
+  };
+
+  useEffect(() => {
+    getBloodGroupData();
+    getBloodRecords();
+  }, []);
   const { user } = useSelector((state) => state.auth);
   return (
     <Layout>
-      <div className="container">
+      <div className="cardBloodGroups">
+        <div className="d-flex flex-row flex-wrap">
+          {data.map((record, i) => (
+            <div
+              className="card m-2 p-1"
+              key={i}
+              style={{ width: "18rem", backgroundColor: colors[i] }}
+            >
+              <div className="card-body">
+                <h1 className="card-title bg-light text-dark text-center mb-3">
+                  {record.bloodGroup}
+                </h1>
+                <p className="card-text">
+                  totalIn: <b>{record.totalIn} (ML)</b>
+                </p>
+                <p className="card-text">
+                  totalOut: <b>{record.totalOut} (ML)</b>
+                </p>
+              </div>
+              <div className="card-footer text-light bg-dark text-center">
+                Total Available: <b>{record.availableBlood} (ML)</b>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* <div className="container">
         <div className="d-flex flex-column mt-4">
           <h1>
             welcome Admin <i className="text-success">{user?.name}</i>
@@ -25,34 +100,9 @@ const AdminHomePage = () => {
             hospitals have. The blood banking process includes several steps
             like collecting blood followed by processing the collected blood,
             testing, separating, and storing the blood.
-            <p>
-              If you've had a blood test, it was probably taken from a small
-              vein in your arm and sent to a lab for evaluation. The types of
-              molecules present in the blood and their concentrations are
-              identified by some of the most popular blood tests, such as those
-              that measure fat or glucose levels in plasma. Other blood tests
-              examine the components generated in the blood as well as their
-              amounts and kinds. Hematocrit, a measurement of the proportion of
-              RBCs (erythrocytes) in a blood sample, is one such test. It is
-              done by centrifuging the blood sample in a centrifugation machine.
-              As a result, the lighter portion of blood that is liquid plasma is
-              separated from the denser part of the blood. The RBCs form the
-              heavier component of the blood sample, and it separates out during
-              centrifugation. It settles at the bottom of the hematocrit tube. A
-              pale, thin layer of the remaining blood components is present
-              above the erythrocytes. These are platelets and white blood cells
-              (leukocytes) (thrombocytes). The buffy coat is the name for this
-              layer, which typically makes up less than 1% of a blood sample.
-              The blood plasma, which makes up most of the sample and is often a
-              light, straw-colored fluid, is located above the buffy coat. The
-              term "packed cell volume" is also frequently used to describe the
-              volume of erythrocytes following centrifugation. Blood typically
-              has around 45 percent erythrocytes, although samples can range
-              widely from 36 to 50 percent..
-            </p>
           </p>
         </div>
-      </div>
+      </div> */}
     </Layout>
   );
 };
